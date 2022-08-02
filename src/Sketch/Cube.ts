@@ -16,15 +16,15 @@ export default class Cube {
   initCube() {
     let cubies = [
       // Front face.
-      // new Cubie(1, 1, 1),
-      // new Cubie(1, 0, 1),
-      // new Cubie(1, -1, 1),
-      // new Cubie(-1, 1, 1),
-      // new Cubie(-1, 0, 1),
-      // new Cubie(-1, -1, 1),
-      // new Cubie(0, 1, 1),
-      // new Cubie(0, 0, 1),
-      // new Cubie(0, -1, 1),
+      new Cubie(1, 1, 1),
+      new Cubie(1, 0, 1),
+      new Cubie(1, -1, 1),
+      new Cubie(-1, 1, 1),
+      new Cubie(-1, 0, 1),
+      new Cubie(-1, -1, 1),
+      new Cubie(0, 1, 1),
+      new Cubie(0, 0, 1),
+      new Cubie(0, -1, 1),
 
       // Middle face.
       new Cubie(-1, 1, 0),
@@ -38,15 +38,15 @@ export default class Cube {
       new Cubie(1, -1, 0),
 
       // Back face.
-      // new Cubie(-1, 1, -1),
-      // new Cubie(0, 1, -1),
-      // new Cubie(1, 1, -1),
-      // new Cubie(-1, 0, -1),
-      // new Cubie(0, 0, -1),
-      // new Cubie(1, 0, -1),
-      // new Cubie(-1, -1, -1),
-      // new Cubie(0, -1, -1),
-      // new Cubie(1, -1, -1),
+      new Cubie(-1, 1, -1),
+      new Cubie(0, 1, -1),
+      new Cubie(1, 1, -1),
+      new Cubie(-1, 0, -1),
+      new Cubie(0, 0, -1),
+      new Cubie(1, 0, -1),
+      new Cubie(-1, -1, -1),
+      new Cubie(0, -1, -1),
+      new Cubie(1, -1, -1),
     ];
 
     cubies.forEach((cubie: any, i) => {
@@ -57,8 +57,10 @@ export default class Cube {
   rotateMatrix() {
     this.cubeGroup.children.forEach((child) => {
       const pos = child.position;
-      const rotatedMatrix = this.matrixMultiply([pos.x, pos.y]);
-      child.position.set(rotatedMatrix[0], rotatedMatrix[1], 0);
+      const arr = [pos.x, pos.y];
+      // const rotatedMatrix = this.matrixMultiply([pos.x, pos.y]);
+      // child.position.set(rotatedMatrix[0], rotatedMatrix[1], 0);
+      child.position.set(arr[0], arr[1], child.position.z);
       child.rotateOnWorldAxis(
         new THREE.Vector3(0, 0, -1),
         THREE.MathUtils.degToRad(90)

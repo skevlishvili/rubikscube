@@ -58,6 +58,8 @@ export default class SceneInit implements iSceneInit {
 
     // if window resizes
     window.addEventListener("resize", () => this.onWindowResize(), false);
+
+    this.scene.background = new THREE.Color("white");
   }
 
   animate(): void {
