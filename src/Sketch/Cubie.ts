@@ -1,5 +1,7 @@
 import * as THREE from "three";
+// @ts-ignore
 import vertex from "./shaders/vertex.glsl";
+// @ts-ignore
 import fragment from "./shaders/fragment.glsl";
 
 interface iCubie {
@@ -11,10 +13,20 @@ interface iCubie {
   offsetZ: number;
 }
 
+interface iUniformsOpacity {
+  type: string;
+  value: number;
+}
+
+type iUniforms = {
+  opacity: iUniformsOpacity;
+};
+
 export default class Cubie implements iCubie {
   cubieGroup: THREE.Group;
   cubieMesh: THREE.Mesh;
   lineMesh: THREE.LineSegments;
+  uniforms: iUniforms;
   offsetX!: number;
   offsetY!: number;
   offsetZ!: number;
@@ -30,6 +42,7 @@ export default class Cubie implements iCubie {
 
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.ShaderMaterial({
+      transparent: true,
       uniforms: this.uniforms,
       vertexShader: vertex,
       fragmentShader: fragment,
